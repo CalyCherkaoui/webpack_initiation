@@ -44,6 +44,7 @@ Add ``webpack.config.js`` to the ``root``
 Àt this point the dir structure should be like that:
 ```
   webpack-demo
+  |- /node_modules
   |- package.json
   |- webpack.config.js
   |- /dist
@@ -54,7 +55,7 @@ Add ``webpack.config.js`` to the ``root``
 ```
 
 In ``./webpack.config.js`` add config code:
-```
+```javascript
   const path = require('path');
 
   module.exports = {
@@ -74,7 +75,7 @@ $ npx webpack --config webpack.config.js
 Make a shortcut to run a local copy of webpack from the CLI with NPM Scripts ``build``
 In the ``./package.json`` change ''scripts'' lines value :
 
-```
+```javascript
 {
    "name": "webpack-demo",
    "version": "1.0.0",
