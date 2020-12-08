@@ -3,6 +3,8 @@
 This tuto follow Webpack original documentation:
 [Webpack Basic Setup](https://webpack.js.org/guides/getting-started/)
 
+The idea is to build a simple project that required an external library [lodash](https://lodash.com/) by installing webpack with npm
+
 ## 1 Stting up the folder
 
 ```
