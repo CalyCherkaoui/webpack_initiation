@@ -108,6 +108,14 @@ In the terminal run
 $ npm run build
 ```
 
+# Usage
+
+1- Write code
+2- run 
+```
+$ npx webpack
+```
+
 
 
 
