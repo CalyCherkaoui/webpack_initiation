@@ -1,0 +1,15 @@
+Create The folder
+mkdir webpack-demo
+cd webpack-demo
+
+Initiate webpack
+npm init -y
+npm install webpack webpack-cli --save-dev
+
+following directory structure, 
+
+ webpack-demo
+  |- package.json
+  |- index.html
+  |- /src
+    |- index.js
