@@ -69,6 +69,43 @@ In the terminal bundle with:
 ```
 $ npx webpack --config webpack.config.js 
 ```
+## 5 Shortcut to run a local copy of webpack
+
+Make a shortcut to run a local copy of webpack from the CLI with NPM Scripts ``build``
+In the ``./package.json`` change ''scripts'' lines value :
+
+```
+{
+   "name": "webpack-demo",
+   "version": "1.0.0",
+   "description": "",
+   "private": true,
+   "scripts": {
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "build": "webpack"
+
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "devDependencies": {
+     "webpack": "^5.4.0",
+     "webpack-cli": "^4.2.0"
+   },
+   "dependencies": {
+     "lodash": "^4.17.20"
+   }
+ }
+```
+
+In the terminal run
+```
+$ npm run build
+```
+
+
 
 
 
