@@ -110,7 +110,7 @@ $ npm run build
 
 # Usage
 
-1- Write code
+1- Write code or create import/export modules in ``/src``
 2- run 
 ```
 $ npx webpack
