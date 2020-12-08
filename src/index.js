@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import myName from './myName';
+import {functionOne, functionTwo} from './namedExport';
 
 function divcomponent() {
   const element = document.createElement('div');
@@ -19,3 +20,6 @@ function hedercomponent() {
 document.body.appendChild(hedercomponent());
 
 document.body.appendChild(divcomponent());
+
+functionOne();
+functionTwo();
