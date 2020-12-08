@@ -1,10 +1,10 @@
 Create The folder
-mkdir webpack-demo
-cd webpack-demo
+$ mkdir webpack-demo
+$ cd webpack-demo
 
 Initiate webpack
-npm init -y
-npm install webpack webpack-cli --save-dev
+$ npm init -y
+$ npm install webpack webpack-cli --save-dev
 
 following directory structure, 
 
@@ -17,6 +17,37 @@ following directory structure,
 
 Creating a Bundle:
 To bundle the lodash dependency with index.js, we'll need to install the library locally:
+$ npm install --save lodash
 
-npm install --save lodash
+bundle the dependency
+$ npx webpack
 
+Advanced Webpack configuration
+
+add webpack.config.js to the root
+at thsi point the dir structure should be like that:
+
+  webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+    |- index.html
+    |- main.js
+  |- /src
+    |- index.js
+
+copy in webpack.config.js the folowing code:
+
+
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+
+run:
+$ npx webpack --config webpack.config.js 
