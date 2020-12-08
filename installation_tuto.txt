@@ -8,8 +8,15 @@ npm install webpack webpack-cli --save-dev
 
 following directory structure, 
 
- webpack-demo
+  webpack-demo
   |- package.json
-  |- index.html
+  |- /dist
+    |- index.html
   |- /src
     |- index.js
+
+Creating a Bundle:
+To bundle the lodash dependency with index.js, we'll need to install the library locally:
+
+npm install --save lodash
+
