@@ -122,7 +122,7 @@ $ npx webpack
 ## Loading CSS
 
 Enables us to import './style.css' into the file that depends on that styling.
-when that module is run, a `` <style>`` tag with the stringified css will be inserted into the ``<head>`` of your html file.
+when that module is run, a `` <style>`` tag with the stringified css will be inserted into the ``<head>`` of our html file.
 
 To import a CSS file from within a JavaScript module:
 ```
@@ -166,13 +166,71 @@ At this point, Our project files structure looks like:
 Import style.css in ``./src/index.js`` file:
 
 ```javascript
-import './style.css';
-//.....
+  import './style.css';
+  //.....
 ```
 
 Add some styling in the style.css and run
 ```
   $ npm run build
+```
+## Loading Images:
+
+How it works:
+When we import MyImage from ``./my-image.png``, that image will be processed and added to our output directory and the MyImage variable will contain the final url of that image after processing. When using the css-loader, as shown above, a similar process will occur for ``url('./my-image.png')`` within our CSS. The loader will recognize this is a local file, and replace the './my-image.png' path with the final path to the image in our output directory. The html-loader handles ``<img src="./my-image.png" />`` in the same manner.
+
+Add the image loader in the module rules in ``webpack.config.js`` file:
+```javascript
+  const path = require('path');
+
+  module.exports = {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+      ],
+    },
+  };
+```
+
+Add the image file ``my-image.png`` inside the ./src
+```
+webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+    |- bundle.js
+    |- index.html
+  |- /src
+    |- my-image.png
+    |- style.css
+    |- index.js
+  |- /node_modules
+```
+Import the image in ``./src/index.js`` file:
+
+```javascript
+  import myImage from './my-image.png';
+  //.....
+```
+
+Or use it as background in ``style.css`` file:
+```
+ .hello {
+    color: red;
+    background: url('./my-image.png');
+ }
 ```
 
 
