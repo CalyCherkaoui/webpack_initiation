@@ -43,7 +43,7 @@ $ npx webpack
 ## 4 Advanced Webpack configuration:
 
 Add ``webpack.config.js`` to the ``root``
-Àt this point the dir structure should be like that:
+At this point the dir structure should be like that:
 ```
   webpack-demo
   |- /node_modules
@@ -51,7 +51,7 @@ Add ``webpack.config.js`` to the ``root``
   |- webpack.config.js
   |- /dist
     |- index.html
-    |- main.js
+    |- bundle.js
   |- /src
     |- index.js
 ```
@@ -63,7 +63,7 @@ In ``./webpack.config.js`` add config code:
   module.exports = {
     entry: './src/index.js',
     output: {
-      filename: 'main.js',
+      filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
   };
@@ -117,7 +117,14 @@ $ npm run build
 $ npx webpack
 ```
 
+# ASSET MANAGEMENT WITH WEBPACK
 
+## Loading CSS
+
+To import a CSS file from within a JavaScript module:
+```
+$ npm install --save-dev style-loader css-loader
+```
 
 
 
