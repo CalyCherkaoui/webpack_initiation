@@ -163,6 +163,12 @@ At this point, Our project files structure looks like:
       |- index.js
     |- /node_modules
 ```
+Import style.css in ``./src/index.js`` file:
+
+```javascript
+import './style.css';
+//.....
+```
 
 Add some styling in the style.css and run
 ```

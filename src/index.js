@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import './style.css';
 import myName from './myName';
 import {functionOne, functionTwo} from './namedExport';
 
