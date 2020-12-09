@@ -43,7 +43,7 @@ $ npx webpack
 ## 4 Advanced Webpack configuration:
 
 Add ``webpack.config.js`` to the ``root``
-Àt this point the dir structure should be like that:
+At this point the dir structure should be like that:
 ```
   webpack-demo
   |- /node_modules
@@ -51,7 +51,7 @@ Add ``webpack.config.js`` to the ``root``
   |- webpack.config.js
   |- /dist
     |- index.html
-    |- main.js
+    |- bundle.js
   |- /src
     |- index.js
 ```
@@ -63,7 +63,7 @@ In ``./webpack.config.js`` add config code:
   module.exports = {
     entry: './src/index.js',
     output: {
-      filename: 'main.js',
+      filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
   };
@@ -116,6 +116,139 @@ $ npm run build
 ```
 $ npx webpack
 ```
+
+# ASSET MANAGEMENT WITH WEBPACK
+
+## Loading CSS
+
+Enables us to import './style.css' into the file that depends on that styling.
+when that module is run, a `` <style>`` tag with the stringified css will be inserted into the ``<head>`` of our html file.
+
+To import a CSS file from within a JavaScript module:
+```
+$ npm install --save-dev style-loader css-loader
+```
+
+Add a module to ``webpack.config.js`` file
+```javascript
+  // webpack.config.js
+
+  const path = require('path');
+
+  module.exports = {
+
+      //...
+
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
+  };
+```
+Add a ``style.css`` in ``./src`` folder.
+At this point, Our project files structure looks like:
+```
+  webpack-demo
+    |- package.json
+    |- webpack.config.js
+    |- /dist
+      |- bundle.js
+      |- index.html
+    |- /src
+      |- style.css
+      |- index.js
+    |- /node_modules
+```
+Import style.css in ``./src/index.js`` file:
+
+```javascript
+  import './style.css';
+  //.....
+```
+
+Add some styling in the style.css and run
+```
+  $ npm run build
+```
+## Loading Images:
+
+How it works:
+When we import MyImage from ``./my-image.png``, that image will be processed and added to our output directory and the MyImage variable will contain the final url of that image after processing. When using the css-loader, as shown above, a similar process will occur for ``url('./my-image.png')`` within our CSS. The loader will recognize this is a local file, and replace the './my-image.png' path with the final path to the image in our output directory. The html-loader handles ``<img src="./my-image.png" />`` in the same manner.
+
+Add the image loader in the module rules in ``webpack.config.js`` file:
+```javascript
+  const path = require('path');
+
+  module.exports = {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+      ],
+    },
+  };
+```
+
+Add the image file ``my-image.png`` inside the ./src
+```
+webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+    |- bundle.js
+    |- index.html
+  |- /src
+    |- my-image.png
+    |- style.css
+    |- index.js
+  |- /node_modules
+```
+Import the image in ``./src/index.js`` file:
+
+```javascript
+  import myImage from './my-image.png';
+  //.....
+```
+
+Or use it as background in ``style.css`` file:
+```
+ .hello {
+    color: red;
+    background: url('./my-image.png');
+ }
+```
+
+Compile with
+```
+  $ npm run build
+```
+
+## Loading Fonts:
+The Asset Modules will take any file you load through them and output it to your build directory. This means we can use them for any kind of file, including fonts.
+It's the same process as loading images. Refer to [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-fonts)
+
+## Loading DATA ( XML - CSV)
+
+[webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-data)
+
+
+
+
 
 
 
