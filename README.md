@@ -121,10 +121,54 @@ $ npx webpack
 
 ## Loading CSS
 
+Enables us to import './style.css' into the file that depends on that styling.
+when that module is run, a `` <style>`` tag with the stringified css will be inserted into the ``<head>`` of your html file.
+
 To import a CSS file from within a JavaScript module:
 ```
 $ npm install --save-dev style-loader css-loader
 ```
+
+Add a module to ``webpack.config.js`` file
+```javascript
+  // webpack.config.js
+
+  const path = require('path');
+
+  module.exports = {
+
+      //...
+
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
+  };
+```
+Add a style.css in /src folder.
+At this point, Our project files structure looks like:
+```
+  webpack-demo
+    |- package.json
+    |- webpack.config.js
+    |- /dist
+      |- bundle.js
+      |- index.html
+    |- /src
+      |- style.css
+      |- index.js
+    |- /node_modules
+```
+
+
+
+
+
+
 
 
 
