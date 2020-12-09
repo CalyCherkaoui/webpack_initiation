@@ -149,7 +149,7 @@ Add a module to ``webpack.config.js`` file
     },
   };
 ```
-Add a style.css in /src folder.
+Add a ``style.css`` in ``./src`` folder.
 At this point, Our project files structure looks like:
 ```
   webpack-demo

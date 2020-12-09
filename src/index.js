@@ -11,6 +11,7 @@ function divcomponent() {
 
 function hedercomponent() {
   var element = document.createElement('h2');
+  element.classList.add('hello');
 
   // use your function!
   element.innerHTML = myName('Houda');
