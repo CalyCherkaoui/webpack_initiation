@@ -233,6 +233,18 @@ Or use it as background in ``style.css`` file:
  }
 ```
 
+Compile with
+```
+  $ npm run build
+```
+
+## Loading Fonts:
+The Asset Modules will take any file you load through them and output it to your build directory. This means we can use them for any kind of file, including fonts.
+It's the same process as loading images. Refer to [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-fonts)
+
+## Loading DATA ( XML - CSV)
+
+[webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-data)
 
 
 
