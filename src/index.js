@@ -6,20 +6,18 @@ function divcomponent() {
   const element = document.createElement('div');
 // Lodash, currently included via a script, is required for this line to work
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('hello');
   return element;
 }
 
 function hedercomponent() {
   var element = document.createElement('h2');
-  element.classList.add('hello');
-
   // use your function!
   element.innerHTML = myName('Houda');
   return element;
 }
 
 document.body.appendChild(hedercomponent());
-
 document.body.appendChild(divcomponent());
 
 functionOne();

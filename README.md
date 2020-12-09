@@ -164,6 +164,12 @@ At this point, Our project files structure looks like:
     |- /node_modules
 ```
 
+Add some styling in the style.css and run
+```
+  $ npm run build
+```
+
+
 
 
 
