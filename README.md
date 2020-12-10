@@ -343,7 +343,7 @@ In general it's good practice to clean the /dist folder before each build.
   $ npm install --save-dev clean-webpack-plugin
 ```
 In the webpack.config.js file
-````javascript
+```javascript
   const path = require('path');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -369,20 +369,3 @@ run
   $ npm run build
 ```
 Now we only see the files generated from the build and no more old files.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
