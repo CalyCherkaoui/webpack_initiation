@@ -246,6 +246,131 @@ It's the same process as loading images. Refer to [webpack documentation webpage
 
 [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-data)
 
+# OUTPUT MANAGEMENT WITH WEBPACK
+
+So far we've manually included all our assets in our index.html file, but as your application grows and once you start using hashes in filenames and outputting multiple bundles, it will be difficult to keep managing your index.html file manually. However, a few plugins exist that will make this process much easier to manage
+
+Let's add ``print.js`` with an export function to the ``./src`` folder
+```
+  webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+  |- /src
+    |- index.js
+    |- print.js
+  |- /node_modules
+```
+Update ``dist/index.html`` file in preparation for webpack to split out entries
+```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <title>Output Management</title>
+      <script src="./print.bundle.js"></script>
+    </head>
+    <body>
+      ........
+      <script src="bundle.js"></script>
+      <script src="./index.bundle.js"></script>
+    </body>
+  </html>
+```
+
+To adjust the config, we add our ``src/print.js`` as a new entry point (print) and we change the output as well, so it will dynamically generate bundle names, based on the entry point names:
+
+in ``webpack.config.js`` file:
+```javascript
+  const path = require('path');
+
+  // .....
+
+  module.exports = {
+    entry: { // change in entry
+      index: './src/index.js',
+      print: './src/print.js',
+    },
+    output: {
+      filename: '[name].bundle.js', // change in output filename
+      path: path.resolve(__dirname, 'dist'),
+    },
+  };
+```
+run
+```
+  $ npm run build
+```
+## Setting up HtmlWebpackPlugin
+ what would happen if we changed the name of one of our entry points, or even added a new one? The generated bundles would be renamed on a build, but our index.html file would still reference the old names. Let's fix that with the HtmlWebpackPlugin.
+
+```
+  $ npm install --save-dev html-webpack-plugin
+```
+In ``Webpack.config.js``
+
+```javascript
+  const path = require('path');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  module.exports = {
+    entry: {
+      index: './src/index.js',
+      print: './src/print.js',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Output Management',
+      }),
+    ],
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+  };
+```
+HtmlWebpackPlugin by default will generate its own index.html file and will replace our index.html file with a newly generated one.
+Run:
+```
+  $ npm run build
+```
+## Cleaning up the /dist folder
+
+Webpack will generate the files and put them in the /dist folder for you, but it doesn't keep track of which files are actually in use by your project.
+As we code , /dist folder becomes quite cluttered. 
+In general it's good practice to clean the /dist folder before each build.
+
+```
+  $ npm install --save-dev clean-webpack-plugin
+```
+In the webpack.config.js file
+````javascript
+  const path = require('path');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+  module.exports = {
+    entry: {
+      index: './src/index.js',
+      print: './src/print.js',
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Output Management',
+      }),
+    ],
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+  };
+```
+run
+```
+  $ npm run build
+```
+Now we only see the files generated from the build and no more old files.
+
+
 
 
 
