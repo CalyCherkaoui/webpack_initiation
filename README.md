@@ -328,6 +328,12 @@ In ``Webpack.config.js``
     },
   };
 ```
+HtmlWebpackPlugin by default will generate its own index.html file and will replace our index.html file with a newly generated one.
+Run:
+```
+  $ npm run build
+```
+
 
 
 
