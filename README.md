@@ -278,6 +278,25 @@ Update ``dist/index.html`` file in preparation for webpack to split out entries
   </html>
 ```
 
+To adjust the config, we add our ``src/print.js`` as a new entry point (print) and we change the output as well, so it will dynamically generate bundle names, based on the entry point names:
+
+in ``webpack.config.js`` file:
+```javascript
+  const path = require('path');
+
+  // .....
+
+  module.exports = {
+    entry: { // change in entry
+      index: './src/index.js',
+      print: './src/print.js',
+    },
+    output: {
+      filename: '[name].bundle.js', // change in output filename
+      path: path.resolve(__dirname, 'dist'),
+    },
+  };
+```
 
 
 
