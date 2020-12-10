@@ -297,6 +297,10 @@ in ``webpack.config.js`` file:
     },
   };
 ```
+run
+```
+  $ npm run build
+```
 
 
 
