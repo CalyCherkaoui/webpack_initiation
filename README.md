@@ -364,7 +364,11 @@ In the webpack.config.js file
     },
   };
 ```
-
+run
+```
+  $ npm run build
+```
+Now we only see the files generated from the build and no more old files.
 
 
 
