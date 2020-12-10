@@ -301,7 +301,33 @@ run
 ```
   $ npm run build
 ```
+## Setting up HtmlWebpackPlugin
+ what would happen if we changed the name of one of our entry points, or even added a new one? The generated bundles would be renamed on a build, but our index.html file would still reference the old names. Let's fix that with the HtmlWebpackPlugin.
 
+```
+  $ npm install --save-dev html-webpack-plugin
+```
+In ``Webpack.config.js``
+
+```javascript
+  const path = require('path');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  module.exports = {
+    entry: {
+      index: './src/index.js',
+      print: './src/print.js',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Output Management',
+      }),
+    ],
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+  };
+```
 
 
 
