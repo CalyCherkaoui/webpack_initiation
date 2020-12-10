@@ -3,6 +3,7 @@ import myImage from './my-image.jpg';
 import './style.css';
 import myName from './myName';
 import {functionOne, functionTwo} from './namedExport';
+import printMe from './print.js';
 
 function hedercomponent() {
   var element = document.createElement('h2');
@@ -13,9 +14,15 @@ function hedercomponent() {
 
 function divcomponent() {
   const element = document.createElement('div');
+  const btn = document.createElement('button');
 // Lodash, currently included via a script, is required for this line to work
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
   element.classList.add('hello');
+
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = printMe;
+  element.appendChild(btn);
+
   return element;
 }
 

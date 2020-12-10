@@ -246,6 +246,41 @@ It's the same process as loading images. Refer to [webpack documentation webpage
 
 [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-data)
 
+# OUTPUT MANAGEMENT WITH WEBPACK
+
+So far we've manually included all our assets in our index.html file, but as your application grows and once you start using hashes in filenames and outputting multiple bundles, it will be difficult to keep managing your index.html file manually. However, a few plugins exist that will make this process much easier to manage
+
+Let's add ``print.js`` with an export function to the ``./src`` folder
+```
+  webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+  |- /src
+    |- index.js
+    |- print.js
+  |- /node_modules
+```
+Update ``dist/index.html`` file in preparation for webpack to split out entries
+```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <title>Output Management</title>
+      <script src="./print.bundle.js"></script>
+    </head>
+    <body>
+      ........
+      <script src="bundle.js"></script>
+      <script src="./index.bundle.js"></script>
+    </body>
+  </html>
+```
+
+
+
+
 
 
 
