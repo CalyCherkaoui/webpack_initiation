@@ -7,8 +7,11 @@ The idea is to build a simple project that required an external library [lodash]
 
 ## Table of content:
 
-- [SETTING UP](#SETTING-UP)
-- [ASSET MANAGEMENT WITH WEBPACK](#ASSET-MANAGEMENT-WITH-WEBPACK)
+- [SETTING UP](#1.-SETTING-UP)
+- [ASSET MANAGEMENT WITH WEBPACK](#2.-ASSET-MANAGEMENT-WITH-WEBPACK)
+- [OUTPUT MANAGEMENT WITH WEBPACK](#3.-OUTPUT-MANAGEMENT-WITH-WEBPACK)
+- [DEVELOPMENT ENVIRONEMENT](#4.-DEVELOPMENT-ENVIRONEMENT)
+
 
 # 1. SETTING UP
 ## 1.1 Stting up the folder
@@ -17,7 +20,7 @@ The idea is to build a simple project that required an external library [lodash]
 $ mkdir webpack-demo
 $ cd webpack-demo
 ```
-## 2 Initializing Node and installing Webpack
+## 1.2 Initializing Node and installing Webpack
 
 In the terminal run :
 ```
@@ -35,7 +38,7 @@ Create the following directory structure:
     |- index.js
 ```
 
-## 3 Creating a Bundle:
+## 1.3 Creating a Bundle:
 
 To bundle the lodash dependency with index.js, we'll need to install the library locally:
 ```
@@ -46,7 +49,7 @@ Bundle the dependency:
 $ npx webpack
 ```
 
-## 4 Advanced Webpack configuration:
+## 1.4 Advanced Webpack configuration:
 
 Add ``webpack.config.js`` to the ``root``
 At this point the dir structure should be like that:
@@ -78,7 +81,7 @@ In the terminal bundle with:
 ```
 $ npx webpack --config webpack.config.js 
 ```
-## 5 Shortcut to run a local copy of webpack
+## 1.5 Shortcut to run a local copy of webpack
 
 Make a shortcut to run a local copy of webpack from the CLI with NPM Scripts ``build``
 In the ``./package.json`` change ''scripts'' lines value :
@@ -114,7 +117,7 @@ In the terminal run
 $ npm run build
 ```
 
-# Usage
+## 1.6 Usage
 
 1- Write code or create import/export modules in ``/src``
 <br>
@@ -123,9 +126,9 @@ $ npm run build
 $ npx webpack
 ```
 
-# ASSET MANAGEMENT WITH WEBPACK
+# 2. ASSET MANAGEMENT WITH WEBPACK
 
-## Loading CSS
+## 2.1 Loading CSS
 
 Enables us to import './style.css' into the file that depends on that styling.
 when that module is run, a `` <style>`` tag with the stringified css will be inserted into the ``<head>`` of our html file.
@@ -180,7 +183,7 @@ Add some styling in the style.css and run
 ```
   $ npm run build
 ```
-## Loading Images:
+## 2.2 Loading Images:
 
 How it works:
 When we import MyImage from ``./my-image.png``, that image will be processed and added to our output directory and the MyImage variable will contain the final url of that image after processing. When using the css-loader, as shown above, a similar process will occur for ``url('./my-image.png')`` within our CSS. The loader will recognize this is a local file, and replace the './my-image.png' path with the final path to the image in our output directory. The html-loader handles ``<img src="./my-image.png" />`` in the same manner.
@@ -244,15 +247,15 @@ Compile with
   $ npm run build
 ```
 
-## Loading Fonts:
+## 2.3 Loading Fonts:
 The Asset Modules will take any file you load through them and output it to your build directory. This means we can use them for any kind of file, including fonts.
 It's the same process as loading images. Refer to [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-fonts)
 
-## Loading DATA ( XML - CSV)
+## 2.4 Loading DATA ( XML - CSV)
 
 [webpack documentation webpage](https://webpack.js.org/guides/asset-management/#loading-data)
 
-# OUTPUT MANAGEMENT WITH WEBPACK
+# 3. OUTPUT MANAGEMENT WITH WEBPACK
 
 So far we've manually included all our assets in our index.html file, but as your application grows and once you start using hashes in filenames and outputting multiple bundles, it will be difficult to keep managing your index.html file manually. However, a few plugins exist that will make this process much easier to manage
 
@@ -307,7 +310,7 @@ run
 ```
   $ npm run build
 ```
-## Setting up HtmlWebpackPlugin
+## 3.1 Setting up HtmlWebpackPlugin
  what would happen if we changed the name of one of our entry points, or even added a new one? The generated bundles would be renamed on a build, but our index.html file would still reference the old names. Let's fix that with the HtmlWebpackPlugin.
 
 ```
@@ -339,7 +342,7 @@ Run:
 ```
   $ npm run build
 ```
-## Cleaning up the /dist folder
+## 3.2 Cleaning up the /dist folder
 
 Webpack will generate the files and put them in the /dist folder for you, but it doesn't keep track of which files are actually in use by your project.
 As we code , /dist folder becomes quite cluttered. 
@@ -376,7 +379,7 @@ run
 ```
 Now we only see the files generated from the build and no more old files.
 
-# Setting up a development environment
+# 4. DEVELOPMENT ENVIRONEMENT
 
 setting mode to 'development' and title to 'Development' in the ``webpack.confih.js``
 ```javascript
@@ -402,7 +405,7 @@ setting mode to 'development' and title to 'Development' in the ``webpack.confih
       },
     };
 ```
-## Source maps (inline-source-map option)
+## 4.1 Source maps (inline-source-map option)
 In order to make it easier to track down errors and warnings, JavaScript offers source maps, which map your compiled code back to your original source code. If an error originates from b.js, the source map will tell you exactly that.
 In ``webpack.config.js`` add:
 ```javascript
@@ -420,8 +423,7 @@ run
 ```
   $ npm run build
 ```
-
-## Using Watch Mode
+## 4.2 Using Watch Mode
 
 Goodbye ``npm run build``!
 We can instruct webpack to "watch" all files within our dependency graph for changes. If one of these files is updated, the code will be recompiled so we don't have to run the full build manually.
@@ -455,7 +457,7 @@ From the command line run:
 ```
   $ npm run watch
 ```
-## Using webpack-dev-server
+## 4.3 Using webpack-dev-server
 The webpack-dev-server provides you with a simple web server and the ability to use live reloading
 ```
   $ npm install --save-dev webpack-dev-server
@@ -485,4 +487,3 @@ Let's add a script in ``package.json`` file, to easily run the dev server
       //...
     }
 ```
-
