@@ -14,7 +14,7 @@ The idea is to build a simple project that required an external library [lodash]
 
 
 # 1. SETTING UP
-## 1.1 Stting up the folder
+## 1.1 Setting up the folder
 
 ```
 $ mkdir webpack-demo
