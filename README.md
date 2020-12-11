@@ -449,5 +449,34 @@ From the command line run:
 ```
   $ npm run watch
 ```
-
+## Using webpack-dev-server
+The webpack-dev-server provides you with a simple web server and the ability to use live reloading
+```
+  $ npm install --save-dev webpack-dev-server
+```
+Change the configuration file in ``webpack.config.js`` to tell the dev server where to look for files.
+The webpack-dev-server will serve the files from the dist directory on localhost:8080
+```javascript
+  //...
+  module.exports = {
+    //...
+    devServer: {
+        contentBase: './dist',
+    },
+    //..
+  };
+```
+Let's add a script in ``package.json`` file, to easily run the dev server
+```javascript
+    {
+      //...
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "webpack --watch",
+        "start": "webpack serve --open",
+        "build": "webpack"
+      },
+      //...
+    }
+```
 
