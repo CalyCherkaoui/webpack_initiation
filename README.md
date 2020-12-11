@@ -5,7 +5,13 @@ This tuto follow Webpack original documentation:
 
 The idea is to build a simple project that required an external library [lodash](https://lodash.com/) by installing webpack with npm
 
-## 1 Stting up the folder
+## Table of content:
+
+- [SETTING UP](#SETTING-UP)
+- [ASSET MANAGEMENT WITH WEBPACK](#ASSET-MANAGEMENT-WITH-WEBPACK)
+
+# 1. SETTING UP
+## 1.1 Stting up the folder
 
 ```
 $ mkdir webpack-demo
