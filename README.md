@@ -369,3 +369,31 @@ run
   $ npm run build
 ```
 Now we only see the files generated from the build and no more old files.
+
+# Setting up a development environment
+
+setting mode to 'development' and title to 'Development' in the ``webpack.confih.js``
+```javascript
+    const path = require('path');
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+    
+    module.exports = {
+      mode: 'development',
+      entry: {
+        index: './src/index.js',
+        print: './src/print.js',
+      },
+      plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+          title: 'Development',
+        }),
+      ],
+      output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+      },
+    };
+```
+
