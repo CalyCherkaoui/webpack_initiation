@@ -397,3 +397,20 @@ setting mode to 'development' and title to 'Development' in the ``webpack.confih
     };
 ```
 
+## Source maps (inline-source-map option)
+In order to make it easier to track down errors and warnings, JavaScript offers source maps, which map your compiled code back to your original source code. If an error originates from b.js, the source map will tell you exactly that.
+In ``webpack.config.js`` add:
+```javascript
+    const path = require('path');
+
+    //......
+
+    module.exports = {
+      //....
+      devtool: 'inline-source-map',
+      //...
+    };
+```
+
+
+
