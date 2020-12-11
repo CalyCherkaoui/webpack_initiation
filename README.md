@@ -415,6 +415,20 @@ run
   $ npm run build
 ```
 
+## Using Watch Mode
 
-
+Goodbye ``npm run build``!
+We can instruct webpack to "watch" all files within our dependency graph for changes. If one of these files is updated, the code will be recompiled so we don't have to run the full build manually.
+In ``package.json``, let's add ``"watch": "webpack --watch",`` to scripts:
+```javascript
+  {
+    //...
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "webpack --watch",
+        "build": "webpack"
+    }
+    //..
+  }
+```
 
