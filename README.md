@@ -431,4 +431,23 @@ In ``package.json``, let's add ``"watch": "webpack --watch",`` to scripts:
     //..
   }
 ```
+We need to tell CleanWebpackPlugin that we don't want to remove the index.html file after the incremental build triggered by watch. In ``webpack.config.js`` :
+```javascript
+  //...
+  module.exports = {
+    //...
+    plugins: [
+      new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+      new HtmlWebpackPlugin({
+            title: 'Development',
+      }),
+    ],
+    //...
+  };
+```
+From the command line run:
+```
+  $ npm run watch
+```
+
 
